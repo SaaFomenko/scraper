@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/support/projects/c++/scraper/lib/scraper/scraper.cpp
+scraper.h
+/home/support/projects/c++/scraper/lib/scraper/scraper.h
+
+/home/support/projects/c++/scraper/lib/scraper/scraper.h
+string
+-
+

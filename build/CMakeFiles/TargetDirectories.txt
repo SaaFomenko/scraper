@@ -1,0 +1,8 @@
+/home/support/projects/c++/scraper/build/CMakeFiles/rebuild_cache.dir
+/home/support/projects/c++/scraper/build/CMakeFiles/edit_cache.dir
+/home/support/projects/c++/scraper/build/CMakeFiles/scraper.exe.dir
+/home/support/projects/c++/scraper/build/lib/CMakeFiles/rebuild_cache.dir
+/home/support/projects/c++/scraper/build/lib/CMakeFiles/edit_cache.dir
+/home/support/projects/c++/scraper/build/lib/scraper/CMakeFiles/rebuild_cache.dir
+/home/support/projects/c++/scraper/build/lib/scraper/CMakeFiles/edit_cache.dir
+/home/support/projects/c++/scraper/build/lib/scraper/CMakeFiles/scraper_lib.dir
