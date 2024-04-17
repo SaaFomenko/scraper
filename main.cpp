@@ -19,14 +19,14 @@ int main()
     }
     catch (std::exception& e)
     {
-        std::cout << not_found_url << url << "/n";
-        std::cout << e.what() << "/n";
+        std::cout << not_found_url << url << "\n";
+        std::cout << e.what() << "\n";
         return 1;
     }
 
 //    scraper = new Scraper();
 
-    std::cout << url << parse_susses << "/n";
+    std::cout << url << parse_susses << "\n";
 
     return 0;
 }
