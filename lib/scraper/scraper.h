@@ -2,22 +2,13 @@
 #define SCRAPER_H
 
 #include <string>
-#include <exception>
+#include <vector>
 
 
-class MyException : public std::exception
+enum 
 {
-	private:
-	const char* msg;
-
-	public:
-		MyException(const char* msg_) : msg(msg_){}
-		virtual ~MyException(){}
-
-		const char* what() const noexcept override
-		{
-			return msg;
-		}
+    url = 0,
+    new_url,
 };
 
 class Scraper
@@ -26,7 +17,7 @@ class Scraper
 		Scraper();
 		virtual ~Scraper();
 
-		void get(const std::string& url);
+		void get(std::vector<std::string>& conf_list);
 		std::string request(const std::string& url);
 };
 

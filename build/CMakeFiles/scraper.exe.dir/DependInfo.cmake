@@ -15,6 +15,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/support/projects/c++/scraper/build/lib/scraper/CMakeFiles/scraper_lib.dir/DependInfo.cmake"
+  "/home/support/projects/c++/scraper/build/lib/my_file/CMakeFiles/my_file_lib.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

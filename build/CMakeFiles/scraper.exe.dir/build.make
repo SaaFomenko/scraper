@@ -100,6 +100,7 @@ scraper.exe: CMakeFiles/scraper.exe.dir/main.cpp.o
 scraper.exe: CMakeFiles/scraper.exe.dir/build.make
 scraper.exe: lib/scraper/libscraper_lib.a
 scraper.exe: /usr/lib/x86_64-linux-gnu/libcurl.so
+scraper.exe: lib/my_file/libmy_file_lib.a
 scraper.exe: CMakeFiles/scraper.exe.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/support/projects/c++/scraper/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable scraper.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/scraper.exe.dir/link.txt --verbose=$(VERBOSE)

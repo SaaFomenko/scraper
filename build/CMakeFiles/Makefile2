@@ -93,18 +93,39 @@ clean: lib/clean
 
 # Recursive "all" directory target.
 lib/all: lib/scraper/all
+lib/all: lib/my_file/all
 
 .PHONY : lib/all
 
 # Recursive "preinstall" directory target.
 lib/preinstall: lib/scraper/preinstall
+lib/preinstall: lib/my_file/preinstall
 
 .PHONY : lib/preinstall
 
 # Recursive "clean" directory target.
 lib/clean: lib/scraper/clean
+lib/clean: lib/my_file/clean
 
 .PHONY : lib/clean
+
+#=============================================================================
+# Directory level rules for directory lib/my_file
+
+# Recursive "all" directory target.
+lib/my_file/all: lib/my_file/CMakeFiles/my_file_lib.dir/all
+
+.PHONY : lib/my_file/all
+
+# Recursive "preinstall" directory target.
+lib/my_file/preinstall:
+
+.PHONY : lib/my_file/preinstall
+
+# Recursive "clean" directory target.
+lib/my_file/clean: lib/my_file/CMakeFiles/my_file_lib.dir/clean
+
+.PHONY : lib/my_file/clean
 
 #=============================================================================
 # Directory level rules for directory lib/scraper
@@ -129,14 +150,15 @@ lib/scraper/clean: lib/scraper/CMakeFiles/scraper_lib.dir/clean
 
 # All Build rule for target.
 CMakeFiles/scraper.exe.dir/all: lib/scraper/CMakeFiles/scraper_lib.dir/all
+CMakeFiles/scraper.exe.dir/all: lib/my_file/CMakeFiles/my_file_lib.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/scraper.exe.dir/build.make CMakeFiles/scraper.exe.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/scraper.exe.dir/build.make CMakeFiles/scraper.exe.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/support/projects/c++/scraper/build/CMakeFiles --progress-num=1,2 "Built target scraper.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/support/projects/c++/scraper/build/CMakeFiles --progress-num=3,4 "Built target scraper.exe"
 .PHONY : CMakeFiles/scraper.exe.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/scraper.exe.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/support/projects/c++/scraper/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/support/projects/c++/scraper/build/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/scraper.exe.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/support/projects/c++/scraper/build/CMakeFiles 0
 .PHONY : CMakeFiles/scraper.exe.dir/rule
@@ -158,7 +180,7 @@ CMakeFiles/scraper.exe.dir/clean:
 lib/scraper/CMakeFiles/scraper_lib.dir/all:
 	$(MAKE) $(MAKESILENT) -f lib/scraper/CMakeFiles/scraper_lib.dir/build.make lib/scraper/CMakeFiles/scraper_lib.dir/depend
 	$(MAKE) $(MAKESILENT) -f lib/scraper/CMakeFiles/scraper_lib.dir/build.make lib/scraper/CMakeFiles/scraper_lib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/support/projects/c++/scraper/build/CMakeFiles --progress-num=3,4 "Built target scraper_lib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/support/projects/c++/scraper/build/CMakeFiles --progress-num=5,6 "Built target scraper_lib"
 .PHONY : lib/scraper/CMakeFiles/scraper_lib.dir/all
 
 # Build rule for subdir invocation for target.
@@ -177,6 +199,33 @@ scraper_lib: lib/scraper/CMakeFiles/scraper_lib.dir/rule
 lib/scraper/CMakeFiles/scraper_lib.dir/clean:
 	$(MAKE) $(MAKESILENT) -f lib/scraper/CMakeFiles/scraper_lib.dir/build.make lib/scraper/CMakeFiles/scraper_lib.dir/clean
 .PHONY : lib/scraper/CMakeFiles/scraper_lib.dir/clean
+
+#=============================================================================
+# Target rules for target lib/my_file/CMakeFiles/my_file_lib.dir
+
+# All Build rule for target.
+lib/my_file/CMakeFiles/my_file_lib.dir/all:
+	$(MAKE) $(MAKESILENT) -f lib/my_file/CMakeFiles/my_file_lib.dir/build.make lib/my_file/CMakeFiles/my_file_lib.dir/depend
+	$(MAKE) $(MAKESILENT) -f lib/my_file/CMakeFiles/my_file_lib.dir/build.make lib/my_file/CMakeFiles/my_file_lib.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/support/projects/c++/scraper/build/CMakeFiles --progress-num=1,2 "Built target my_file_lib"
+.PHONY : lib/my_file/CMakeFiles/my_file_lib.dir/all
+
+# Build rule for subdir invocation for target.
+lib/my_file/CMakeFiles/my_file_lib.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/support/projects/c++/scraper/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/my_file/CMakeFiles/my_file_lib.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/support/projects/c++/scraper/build/CMakeFiles 0
+.PHONY : lib/my_file/CMakeFiles/my_file_lib.dir/rule
+
+# Convenience name for target.
+my_file_lib: lib/my_file/CMakeFiles/my_file_lib.dir/rule
+
+.PHONY : my_file_lib
+
+# clean rule for target.
+lib/my_file/CMakeFiles/my_file_lib.dir/clean:
+	$(MAKE) $(MAKESILENT) -f lib/my_file/CMakeFiles/my_file_lib.dir/build.make lib/my_file/CMakeFiles/my_file_lib.dir/clean
+.PHONY : lib/my_file/CMakeFiles/my_file_lib.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

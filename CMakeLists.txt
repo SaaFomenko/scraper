@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.18)
+cmake_minimum_required(VERSION 3.5)
 
 project(scraper)
 
@@ -16,4 +16,7 @@ add_subdirectory(lib)
 add_executable(${PROJECT_NAME}.exe main.cpp)
 
 include_directories(${CURL_INCLUDE_DIR})
-target_link_libraries(${PROJECT_NAME}.exe ${PROJECT_NAME}_lib ${CURL_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}.exe 
+					${PROJECT_NAME}_lib 
+					${CURL_LIBRARIES}
+					my_file_lib)

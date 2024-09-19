@@ -6,15 +6,25 @@
 
 #IncludeRegexTransform: 
 
+/home/support/projects/c++/scraper/lib/my_file/my_file.h
+fstream
+-
+vector
+-
+
 /home/support/projects/c++/scraper/lib/scraper/scraper.h
 string
 -
-exception
+vector
 -
 
 /home/support/projects/c++/scraper/main.cpp
 iostream
 -
+vector
+-
 lib/scraper/scraper.h
 /home/support/projects/c++/scraper/lib/scraper/scraper.h
+lib/my_file/my_file.h
+/home/support/projects/c++/scraper/lib/my_file/my_file.h
 

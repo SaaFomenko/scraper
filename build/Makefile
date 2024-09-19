@@ -155,6 +155,19 @@ scraper_lib/fast:
 	$(MAKE) $(MAKESILENT) -f lib/scraper/CMakeFiles/scraper_lib.dir/build.make lib/scraper/CMakeFiles/scraper_lib.dir/build
 .PHONY : scraper_lib/fast
 
+#=============================================================================
+# Target rules for targets named my_file_lib
+
+# Build rule for target.
+my_file_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 my_file_lib
+.PHONY : my_file_lib
+
+# fast build rule for target.
+my_file_lib/fast:
+	$(MAKE) $(MAKESILENT) -f lib/my_file/CMakeFiles/my_file_lib.dir/build.make lib/my_file/CMakeFiles/my_file_lib.dir/build
+.PHONY : my_file_lib/fast
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -190,6 +203,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... my_file_lib"
 	@echo "... scraper.exe"
 	@echo "... scraper_lib"
 	@echo "... main.o"
