@@ -44,6 +44,7 @@ file for other purposes.";
 
         str = conf_list.at(url) + ' ' + conf_list.at(new_url) + '\n';
         MyFile conf_file(conf_path, str);
+        conf_list = conf_file.to_words();
     }
 
     try 

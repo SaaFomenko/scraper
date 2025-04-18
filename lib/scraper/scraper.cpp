@@ -21,6 +21,9 @@ std::string Scraper::request(const std::string& url)
   curl_global_init(CURL_GLOBAL_ALL);
 
   if (curl) {
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_easy_setopt (curl, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
     curl_easy_setopt(curl,
       CURLOPT_WRITEFUNCTION,
       static_cast < curl_write > ([](char * contents, size_t size,
@@ -42,6 +45,8 @@ std::string Scraper::request(const std::string& url)
       return curl_easy_strerror(res_code);
     }
 
+    // std::cout << res_code << '\n';
+
     curl_easy_cleanup(curl);
   }
 
@@ -53,7 +58,12 @@ std::string Scraper::request(const std::string& url)
 void Scraper::get(std::vector<std::string>& conf_list)
 {
 //    throw AppException("Scraper get function not realise.");
+
     std::string web_code = request(conf_list.at(url));
+
+    std::cout << "String result >>>\n";
+    std::cout << web_code << '\n';
+    std::cout << "<<< End.\n";
 
     std::cout << conf_list.at(url) << " - be to parse." << '\n';
 }
