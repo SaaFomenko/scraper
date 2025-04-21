@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/scraper.exe.dir/main.cpp.o -o scraper.exe  lib/scraper/libscraper_lib.a /usr/lib/x86_64-linux-gnu/libcurl.so lib/my_file/libmy_file_lib.a 

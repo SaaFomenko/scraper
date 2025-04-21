@@ -1,2 +1,0 @@
-/usr/bin/ar qc libscraper_lib.a CMakeFiles/scraper_lib.dir/scraper.cpp.o
-/usr/bin/ranlib libscraper_lib.a
