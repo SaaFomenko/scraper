@@ -1,0 +1,9 @@
+[submodule "lib/Url"]
+	path = lib/Url
+	url = git@github.com:SaaFomenko/Url.git
+[submodule "lib/my_file"]
+	path = lib/my_file
+	url = git@github.com:SaaFomenko/my_file.git
+[submodule "lib/my_str"]
+	path = lib/my_str
+	url = git@github.com:SaaFomenko/my_str.git
