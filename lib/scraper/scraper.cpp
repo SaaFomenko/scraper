@@ -1,4 +1,5 @@
 #include <iostream>
+#include <filesystem>
 #include <curl/curl.h>
 #include "scraper.h"
 
@@ -59,11 +60,13 @@ void Scraper::get(std::vector<std::string>& conf_list)
 {
 //    throw AppException("Scraper get function not realise.");
 
-    std::string web_code = request(conf_list.at(url));
+  namespace fs = std::filesystem;
+  
+  std::string web_code = request(conf_list.at(url));
 
-    std::cout << "String result >>>\n";
-    std::cout << web_code << '\n';
-    std::cout << "<<< End.\n";
+  std::cout << "String result >>>\n";
+  std::cout << web_code << '\n';
+  std::cout << "<<< End.\n";
 
-    std::cout << conf_list.at(url) << " - be to parse." << '\n';
+  std::cout << conf_list.at(url) << " - be to parse." << '\n';
 }
