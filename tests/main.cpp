@@ -6,7 +6,7 @@
 namespace my
 {
     const char* test_div = "\n----------------------------------\n";
-    std::string test_url = "http://logart.ru"; 
+    std::string test_url = "http://example.com"; 
 }
 
 template <class T>
