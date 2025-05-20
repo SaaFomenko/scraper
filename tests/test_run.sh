@@ -1,3 +1,3 @@
 #!/bin/bash
 
-g++ main.cpp -o test -lgtest -pthread && ./test
+g++ main.cpp ../lib/Url/Url.cpp -o test -lgtest -pthread && ./test
