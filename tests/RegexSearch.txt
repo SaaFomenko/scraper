@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+#include <regex>
+
+class RegexSearch {
+public:
+    RegexSearch(const std::string& pattern) : pattern_(pattern) {}
+
+    bool search(const std::string& text) {
+        std::regex regex(pattern_);
+        return std::regex_search(text, regex);
+    }
+
+private:
+    std::string pattern_;
+};
+
+int main() {
+    RegexSearch search("\\d+"); // Ищем числа
+    std::string text = "Hello, 123 world!";
+    if (search.search(text)) {
+        std::cout << "Найдено совпадение!" << std::endl;
+    } else {
+        std::cout << "Совпадение не найдено." << std::endl;
+    }
+    return 0;
+}

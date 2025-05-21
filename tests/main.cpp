@@ -6,7 +6,8 @@
 namespace my
 {
     const char* test_div = "\n----------------------------------\n";
-    std::string test_url = "http://example.com"; 
+    const char* url_test = "http://example.com";
+    const char* root_test = "example.com";
 }
 
 template <class T>
@@ -17,16 +18,44 @@ void print_test(T val, const char* name)
     std::cout << my::test_div;
 }
 
-TEST(UrlGroupTest, get_url)
+// TEST(UrlSingleTest, get_url)
+// {
+//     // Arange - source
+//     Url url(my::test_url);
+
+//     // Act
+//     std::string value = url.get();
+
+//     // Assert
+//     EXPECT_STREQ(value.c_str(), my::test_url.c_str());
+// }
+
+struct UrlClassTest : public testing::Test
 {
-    // Arange - source
-    Url url(my::test_url);
+    Url *url;
 
-    // Act
-    std::string value = url.get();
+    void SetUp()
+    {
+        url = new Url(my::url_test);
+    }
+    void TearDown()
+    {
+        delete url;
+    }
+};
 
-    // Assert
-    EXPECT_STREQ(value.c_str(), my::test_url.c_str());
+TEST_F(UrlClassTest, get_test)
+{
+    std::string value = url->get();
+
+    EXPECT_STREQ(value.c_str(), my::url_test);
+}
+
+TEST_F(UrlClassTest, to_root_test)
+{
+    std::string value = url->to_root();
+
+    EXPECT_STREQ(value.c_str(), my::root_test);
 }
 
 int main(int argc, char **argv)
