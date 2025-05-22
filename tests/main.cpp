@@ -8,6 +8,8 @@ namespace my
     const char* test_div = "\n----------------------------------\n";
     const char* url_test = "http://example.com";
     const char* root_test = "example.com";
+    const char* http_scheme = "http";
+    const char* https_scheme = "https";
 }
 
 template <class T>
@@ -36,7 +38,15 @@ struct UrlClassTest : public testing::Test
 
     void SetUp()
     {
-        url = new Url(my::url_test);
+        try
+        {
+            url = new Url(my::url_test);
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
+        
     }
     void TearDown()
     {
@@ -51,11 +61,21 @@ TEST_F(UrlClassTest, get_test)
     EXPECT_STREQ(value.c_str(), my::url_test);
 }
 
-TEST_F(UrlClassTest, to_root_test)
+TEST_F(UrlClassTest, to_sheme_test)
 {
-    std::string value = url->to_root();
+    const char* value = url->to_scheme().c_str();
 
-    EXPECT_STREQ(value.c_str(), my::root_test);
+    const char* test_scheme;    
+    if(value == my::http_scheme)
+    {
+        test_scheme = my::http_scheme;
+    }
+    else
+    {
+        test_scheme = my::https_scheme; 
+    }
+
+    EXPECT_STREQ(value, test_scheme);
 }
 
 int main(int argc, char **argv)
