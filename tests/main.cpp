@@ -6,10 +6,11 @@
 namespace my
 {
     const char* test_div = "\n----------------------------------\n";
-    const char* url_test = "http://example.com";
-    const char* root_test = "example.com";
-    const char* http_scheme = "http";
-    const char* https_scheme = "https";
+    const char* url_test = "http://example.com:8080/home/test.html";
+    const char* way_test = "example.com:8080/home/test.html";
+    const char* host_test = "example.com";
+    const std::string http_scheme = "http";
+    const std::string https_scheme = "https";
 }
 
 template <class T>
@@ -61,21 +62,28 @@ TEST_F(UrlClassTest, get_test)
     EXPECT_STREQ(value.c_str(), my::url_test);
 }
 
-TEST_F(UrlClassTest, to_sheme_test)
+TEST_F(UrlClassTest, get_sheme_test)
 {
-    const char* value = url->to_scheme().c_str();
+    const std::string value = url->get_scheme();
 
     const char* test_scheme;    
     if(value == my::http_scheme)
     {
-        test_scheme = my::http_scheme;
+        test_scheme = my::http_scheme.c_str();
     }
     else
     {
-        test_scheme = my::https_scheme; 
+        test_scheme = my::https_scheme.c_str(); 
     }
 
-    EXPECT_STREQ(value, test_scheme);
+    EXPECT_STREQ(value.c_str(), test_scheme);
+}
+
+TEST_F(UrlClassTest, to_host_test)
+{
+    const char* value = url->get_way().c_str();
+
+    EXPECT_STREQ(value, test_way);
 }
 
 int main(int argc, char **argv)
