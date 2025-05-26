@@ -79,11 +79,18 @@ TEST_F(UrlClassTest, get_sheme_test)
     EXPECT_STREQ(value.c_str(), test_scheme);
 }
 
-TEST_F(UrlClassTest, to_host_test)
+TEST_F(UrlClassTest, get_way_test)
 {
-    const char* value = url->get_way().c_str();
+    std::string value = url->get_way();
 
-    EXPECT_STREQ(value, test_way);
+    EXPECT_STREQ(value.c_str(), my::way_test);
+}
+
+TEST_F(UrlClassTest, get_host_test)
+{
+    std::string value = url->get_host();
+
+    EXPECT_STREQ(value.c_str(), my::host_test);
 }
 
 int main(int argc, char **argv)

@@ -19,6 +19,7 @@ class Scraper
 
 		void get(std::vector<std::string>& conf_list);
 		std::string request(const std::string& url);
+		// void save(std::string& str, std::string path);
 };
 
 #endif
