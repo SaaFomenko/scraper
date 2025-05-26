@@ -1,14 +1,35 @@
+#ifdef DEB_REQ
 #include <iostream>
-#include <filesystem>
+#endif
+
+#include <sys/stat.h>
 #include <curl/curl.h>
 #include "scraper.h"
+#include "../Url/Url.h"
 
+static const char* err_create_dir = "Fail, do not create dir!";
 
 typedef size_t( * curl_write)(char * , size_t, size_t, std::string *);
 
+class MyException : public std::exception
+{
+  private:
+  const char* msg;
+
+  public:
+    MyException(const char* msg_) : msg(msg_){}
+    virtual ~MyException(){}
+
+    const char* what() const noexcept override
+    {
+      return msg;
+    }
+};
 
 Scraper::Scraper()
-{}
+{
+  // загрузка конфига, если его не уведомление о его необходимости.
+}
 
 Scraper::~Scraper()
 {}
@@ -46,8 +67,6 @@ std::string Scraper::request(const std::string& url)
       return curl_easy_strerror(res_code);
     }
 
-    // std::cout << res_code << '\n';
-
     curl_easy_cleanup(curl);
   }
 
@@ -60,13 +79,29 @@ void Scraper::get(std::vector<std::string>& conf_list)
 {
 //    throw AppException("Scraper get function not realise.");
 
-  namespace fs = std::filesystem;
+  // namespace fs = std::filesystem;
+  std::string url_str = conf_list.at(url);
   
-  std::string web_code = request(conf_list.at(url));
+  std::string web_code = request(url_str);
 
+#ifdef DEB_REQ
   std::cout << "String result >>>\n";
   std::cout << web_code << '\n';
   std::cout << "<<< End.\n";
 
   std::cout << conf_list.at(url) << " - be to parse." << '\n';
+#endif
+
+  Url url_start(url_str);
+
+  const char* dir_start = url_start.get_host().c_str();
+  struct stat sb;
+
+  if(stat(dir_start, &sb) != 0)
+  {
+    if(mkdir(dir_start, 0777) != 0)
+    {
+      throw MyException(err_create_dir);
+    }
+  }
 }
