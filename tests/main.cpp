@@ -1,12 +1,20 @@
 #include <gtest/gtest.h>
-#include "../scraper.h"
-#include "../../Url/Url.h"
+#include <vector>
+#include "lib/scraper/scraper.h"
+#include "lib/Url/Url.h"
+#include "lib/my_file/my_file.h"
 //#include <gmosk/gmosk.h>
 
 
 namespace my
 {
     const char* test_div = "\n----------------------------------\n";
+    enum
+    {
+        start_url = 0,
+        new_url
+    };
+    const char* conf_path = "conf.txt";
 }
 
 template <class T>
@@ -20,22 +28,30 @@ void print_test(T val, const char* name)
 struct ScraperClassTest : public testing::Test
 {
     Scraper *scraper;
+    MyFile *conf_file;
+    std::vector<std::string> conf_list;
+    const char* url;
 
     void SetUp()
     {
-        // try
-        // {
-            scraper = new Scraper();
-        // }
-        // catch(const std::exception& e)
-        // {
-        //     std::cerr << e.what() << '\n';
-        // }
+        try
+        {
+            conf_file = new MyFile(my::conf_path);
+            conf_list = conf_file->to_words();
+            const char* url = conf_list.at(my::start_url).c_str();
+            scraper = new Scraper(url);
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
         
     }
     void TearDown()
     {
         delete scraper;
+        delete conf_file;
+        delete url;
     }
 };
 
@@ -43,16 +59,16 @@ TEST_F(ScraperClassTest, get_test)
 {
     try
     {
-        scraper->get(my::url_test);
+        scraper->get();
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
     }
-    
-   
 
-    EXPECT_STREQ(value.c_str(), my::url_test);
+    struct stat sb;
+   
+    EXPECT_EQ(stat(url, &sb), 0);
 }
 
 int main(int argc, char **argv)

@@ -5,20 +5,16 @@
 #include <vector>
 
 
-enum 
-{
-    url = 0,
-    new_url,
-};
-
 class Scraper
 {
+	private:
+		std::string url;
 	public:
-		Scraper();
+		Scraper(const char* path);
 		virtual ~Scraper();
 
-		void get(std::vector<std::string>& conf_list);
-		std::string request(const std::string& url);
+		void get();
+		std::string request();
 		// void save(std::string& str, std::string path);
 };
 

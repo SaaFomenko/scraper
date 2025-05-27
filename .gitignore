@@ -1,1 +1,9 @@
 build/
+
+# Test executables 
+tests/test
+lib/scraper/tests/test
+lib/scraper/tests/build/
+
+# Test configure app
+lib/scraper/tests/conf.txt

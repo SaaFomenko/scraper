@@ -26,15 +26,14 @@ class MyException : public std::exception
     }
 };
 
-Scraper::Scraper()
-{
-  // загрузка конфига, если его не уведомление о его необходимости.
-}
+Scraper::Scraper(const char* url) :
+url(url)
+{}
 
 Scraper::~Scraper()
 {}
 
-std::string Scraper::request(const std::string& url)
+std::string Scraper::request()
 {
   CURLcode res_code = CURLE_FAILED_INIT;
   CURL * curl = curl_easy_init();
@@ -75,24 +74,22 @@ std::string Scraper::request(const std::string& url)
   return result;
 }
 
-void Scraper::get(std::vector<std::string>& conf_list)
+void Scraper::get()
 {
 //    throw AppException("Scraper get function not realise.");
 
   // namespace fs = std::filesystem;
-  std::string url_str = conf_list.at(url);
-  
-  std::string web_code = request(url_str);
+  std::string web_code = request();
 
 #ifdef DEB_REQ
   std::cout << "String result >>>\n";
   std::cout << web_code << '\n';
   std::cout << "<<< End.\n";
 
-  std::cout << conf_list.at(url) << " - be to parse." << '\n';
+  std::cout << url << " - be to parse." << '\n';
 #endif
 
-  Url url_start(url_str);
+  Url url_start(url);
 
   const char* dir_start = url_start.get_host().c_str();
   struct stat sb;

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(scraper)
+project(test_scraper)
 
 # set the C++ standard
 set(CMAKE_CXX_STANDARD 11)
@@ -17,9 +17,10 @@ add_executable(${PROJECT_NAME}.exe main.cpp)
 
 include_directories(${CURL_INCLUDE_DIR})
 target_link_libraries(${PROJECT_NAME}.exe 
-					${PROJECT_NAME}_lib 
-					${CURL_LIBRARIES}
-					my_file_lib
-					Url_lib
+					# ${CURL_LIBRARIES}
+					CURL::libcurl
 					gtest
-					pthread)
+					pthread
+					scraper_lib 
+					my_file_lib
+					Url_lib)
