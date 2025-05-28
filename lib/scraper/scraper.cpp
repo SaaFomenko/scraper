@@ -1,13 +1,17 @@
-#ifdef DEB_REQ
+// #define DEB_MKDIR
+#ifdef DEB_MKDIR
+// #ifdef DEB_REQ
 #include <iostream>
 #endif
 
-#include <sys/stat.h>
 #include <curl/curl.h>
 #include "scraper.h"
 #include "../Url/Url.h"
+#include "../my_file/my_file.h"
 
 static const char* err_create_dir = "Fail, do not create dir!";
+static const char* warn_create_file = " - this file allready exist.";
+static const char* html_file = "/index.html";
 
 typedef size_t( * curl_write)(char * , size_t, size_t, std::string *);
 
@@ -79,7 +83,7 @@ void Scraper::get()
 //    throw AppException("Scraper get function not realise.");
 
   // namespace fs = std::filesystem;
-  std::string web_code = request();
+  const char* web_code = request().c_str();
 
 #ifdef DEB_REQ
   std::cout << "String result >>>\n";
@@ -94,6 +98,17 @@ void Scraper::get()
   const char* dir_start = url_start.get_host().c_str();
   struct stat sb;
 
+#ifdef DEB_MKDIR
+  if(stat(dir_start, &sb) == 0)
+  {
+    std::cout << "!!! Directory: " << dir_start << " - exist.\n";
+  }
+  else
+  {
+    std::cout << "!!! Directory: " << dir_start << " - do not exist.\n";
+  }
+#endif
+
   if(stat(dir_start, &sb) != 0)
   {
     if(mkdir(dir_start, 0777) != 0)
@@ -101,4 +116,21 @@ void Scraper::get()
       throw MyException(err_create_dir);
     }
   }
+
+  std::string file_path = dir_start;
+  file_path += html_file;
+
+  MyFile file(file_path.c_str());
+
+  if(file.exist())
+  {
+    std::string warn_str = file_path;
+    warn_str += warn_create_file;
+    throw MyException(warn_str.c_str());
+  }
+  else
+  {
+    file.set_str(web_code);
+  }
+
 }

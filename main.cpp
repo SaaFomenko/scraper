@@ -1,3 +1,8 @@
+// #define DEB_MKDIR
+#ifdef DEB_MKDIR
+#include <iostream>
+#endif
+
 #include <gtest/gtest.h>
 #include <vector>
 #include "lib/scraper/scraper.h"
@@ -12,7 +17,7 @@ namespace my
     enum
     {
         start_url = 0,
-        new_url
+        host
     };
     const char* conf_path = "conf.txt";
 }
@@ -67,8 +72,12 @@ TEST_F(ScraperClassTest, get_test)
     }
 
     struct stat sb;
+
+#ifdef DEB_MKDIR
+    std::cout << "!!! Test print url: " << conf_list.at(my::host) << '\n';
+#endif
    
-    EXPECT_EQ(stat(url, &sb), 0);
+    EXPECT_EQ(stat(conf_list.at(my::host).c_str(), &sb), 0);
 }
 
 int main(int argc, char **argv)
