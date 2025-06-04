@@ -17,7 +17,8 @@ namespace my
     enum
     {
         start_url = 0,
-        host
+        host,
+        html_file
     };
     const char* conf_path = "conf.txt";
 }
@@ -34,7 +35,9 @@ struct ScraperClassTest : public testing::Test
 {
     Scraper *scraper;
     MyFile *conf_file;
+    MyFile *html_file;
     std::vector<std::string> conf_list;
+    std::string path_file;
     const char* url;
 
     void SetUp()
@@ -43,6 +46,8 @@ struct ScraperClassTest : public testing::Test
         {
             conf_file = new MyFile(my::conf_path);
             conf_list = conf_file->to_words();
+            path_file = conf_list.at(my::host) + conf_list.at(my::html_file);
+            html_file = new MyFile(path_file.c_str());
             const char* url = conf_list.at(my::start_url).c_str();
             scraper = new Scraper(url);
         }
@@ -76,8 +81,19 @@ TEST_F(ScraperClassTest, get_test)
 #ifdef DEB_MKDIR
     std::cout << "!!! Test print url: " << conf_list.at(my::host) << '\n';
 #endif
+
    
-    EXPECT_EQ(stat(conf_list.at(my::host).c_str(), &sb), 0);
+    EXPECT_EQ(stat(path_file.c_str(), &sb), 0);
+}
+
+TEST_F(ScraperClassTest, cmp_text)
+{
+    std::string html_code = scraper->request();
+    std::string text = html_file->raw_str();
+
+    bool isTextEQ = html_code == text;
+
+    EXPECT_EQ(isTextEQ, true);
 }
 
 int main(int argc, char **argv)

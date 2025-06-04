@@ -1,2 +1,1 @@
-https://logart.ru
-dev.logart.ru
+https://logart.ru logart.ru /index.html

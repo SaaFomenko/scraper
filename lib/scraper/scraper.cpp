@@ -1,6 +1,9 @@
 // #define DEB_MKDIR
-#ifdef DEB_MKDIR
-// #ifdef DEB_REQ
+//#ifdef DEB_MKDIR
+//#define DEB_REQ
+//#ifdef DEB_REQ
+//#define DEB_INDEX
+#ifdef DEB_INDEX
 #include <iostream>
 #endif
 
@@ -83,7 +86,7 @@ void Scraper::get()
 //    throw AppException("Scraper get function not realise.");
 
   // namespace fs = std::filesystem;
-  const char* web_code = request().c_str();
+  std::string web_code = request();
 
 #ifdef DEB_REQ
   std::cout << "String result >>>\n";
@@ -124,13 +127,24 @@ void Scraper::get()
 
   if(file.exist())
   {
-    std::string warn_str = file_path;
-    warn_str += warn_create_file;
-    throw MyException(warn_str.c_str());
+
+#ifdef DEB_INDEX
+    std::cout << "!!! File: " << file_path << " - exist.\n";
+#endif 
+    std::string html_file = file.raw_str();
+    bool code_eq = html_file == web_code; 
+    if(!code_eq) file.set_str(web_code.c_str());
+
   }
   else
   {
-    file.set_str(web_code);
+
+#ifdef DEB_INDEX
+    std::cout << "!!! Create file: " << file_path << '\n';
+    std::cout << "!!! Set this text: " << web_code << '\n';
+#endif
+
+    file.set_str(web_code.c_str());
   }
 
 }
